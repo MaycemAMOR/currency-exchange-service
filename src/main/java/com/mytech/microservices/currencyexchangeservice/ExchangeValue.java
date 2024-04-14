@@ -23,7 +23,7 @@ public class ExchangeValue {
 
     private BigDecimal conversionMultiple;
 
-    private int port;
+    private String environment;
 
     // for JPA Entity
     public ExchangeValue() {
@@ -36,12 +36,12 @@ public class ExchangeValue {
         this.conversionMultiple = conversionMultiple;
     }
 
-    public int getPort() {
-        return port;
+    public String getEnvironment() {
+        return environment;
     }
 
-    public void setPort(int port) {
-        this.port = port;
+    public void setEnvironment(String environment) {
+        this.environment = environment;
     }
 
     public Long getId() {

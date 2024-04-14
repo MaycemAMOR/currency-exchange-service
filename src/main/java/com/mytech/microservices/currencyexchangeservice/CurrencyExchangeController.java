@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-
 @RestController
 public class CurrencyExchangeController {
 
@@ -20,8 +18,8 @@ public class CurrencyExchangeController {
     public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
         ExchangeValue exchangeValue = exchangeValueRepository.findByFromAndTo(from, to);
         if (exchangeValue == null)
-            throw new ExchageValueNotFoundException(" from : " + from + " to : " + to);
-        exchangeValue.setPort(Integer.parseInt(Objects.requireNonNull(environment.getProperty("server.port"))));
+            throw new ExchageValueNotFoundException("Unable to Find data for" + "from : " + from + " to : " + to);
+        exchangeValue.setEnvironment(environment.getProperty("server.port"));
 
         return exchangeValue;
     }
