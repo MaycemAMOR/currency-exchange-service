@@ -24,7 +24,13 @@ public class CurrencyExchangeController {
         ExchangeValue exchangeValue = exchangeValueRepository.findByFromAndTo(from, to);
         if (exchangeValue == null)
             throw new ExchageValueNotFoundException("Unable to Find data for" + "from : " + from + " to : " + to);
-        exchangeValue.setEnvironment(environment.getProperty("server.port"));
+
+        //CHANGE-KUBERNETES
+        String port = environment.getProperty("local.server.port");
+        String host = environment.getProperty("HOSTNAME");
+        String version = "v11";
+
+        exchangeValue.setEnvironment(port + " " + version + " " + host);
 
         return exchangeValue;
     }
